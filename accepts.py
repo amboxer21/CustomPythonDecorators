@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Call decorators with @Accepts.boolean, @Accepts.integer, etc.
+# Call decorators with @Accepts.boolean, @Accepts.integer, etc. There are examples in the readme!
 class Accepts(object):
     @staticmethod
     def boolean(func):
