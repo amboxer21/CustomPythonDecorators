@@ -21,3 +21,14 @@ class Accepts(object):
                     raise TypeError('"' + str(arg) + '" is not an integer!')
             return func
         return wrapper
+    
+    @staticmethod
+    def string(func):
+        def wrapper(*args):
+            for arg in args:
+                if re.search(r'<__main__',str(arg)) is not None:
+                    pass
+                elif not isinstance(arg, str):
+                    raise TypeError('"' + str(arg) + '" is not a string!')
+            return func
+        return wrapper
