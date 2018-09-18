@@ -14,7 +14,7 @@ class Test(object):
    
 if __name__ == '__main__':
     Test().test_func(False)   # This will work!
-    Test().test_func('False') # This will fail!
+    Test().test_func('sss') # This will fail!
 ```
 
 ^^ Remove newlines in between method declarations if using the python shell/interpretter!
