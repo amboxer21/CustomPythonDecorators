@@ -6,7 +6,7 @@ class Accepts(object):
             for arg in args:
                 if re.search(r'<__main__',str(arg)) is not None:
                     pass
-                elif not str(arg) in ('True','False'):
+                elif not isinstance(arg, bool):
                     raise TypeError('"' + str(arg) + '" is not a bool type!')
             return func
         return wrapper
@@ -17,7 +17,7 @@ class Accepts(object):
             for arg in args:
                 if re.search(r'<__main__',str(arg)) is not None:
                     pass
-                elif re.search(r'\d+\b', str(arg)) is None:
+                elif not isinstance(arg, int):
                     raise TypeError('"' + str(arg) + '" is not an integer!')
             return func
         return wrapper
