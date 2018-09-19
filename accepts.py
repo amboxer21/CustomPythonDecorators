@@ -4,35 +4,44 @@ import re
 
 class Accepts(object):
 
-    @staticmethod
-    def boolean(func):
+    @classmethod
+    def boolean(cls,func):
+        arg_count = func.__code__.co_argcount
         def wrapper(*args):
             for arg in args:
                 if re.search(r'<__main__',str(arg)) is not None:
                     pass
                 elif not isinstance(arg, bool):
                     raise TypeError('"' + str(arg) + '" is not a bool type!')
-            func(args)
+            if int(arg_count) > 1:
+                return func(cls,args)
+            return func(args)
         return wrapper
     
-    @staticmethod
-    def integer(func):
+    @classmethod
+    def integer(cls,func):
+        arg_count = func.__code__.co_argcount
         def wrapper(*args):
             for arg in args:
                 if re.search(r'<__main__',str(arg)) is not None:
                     pass
                 elif not isinstance(arg, int):
                     raise TypeError('"' + str(arg) + '" is not an integer!')
-            func(args)
+            if int(arg_count) > 1:
+                return func(cls,args)
+            return func(args)
         return wrapper
     
-    @staticmethod
-    def string(func):
+    @classmethod
+    def string(cls,func):
+        arg_count = func.__code__.co_argcount
         def wrapper(*args):
             for arg in args:
                 if re.search(r'<__main__',str(arg)) is not None:
                     pass
                 elif not isinstance(arg, str):
                     raise TypeError('"' + str(arg) + '" is not a string!')
-            func(args)
+            if int(arg_count) > 1:
+                return func(cls,args)
+            return func(args)
         return wrapper
