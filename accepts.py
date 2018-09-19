@@ -3,7 +3,7 @@
 import re
 
 class Accepts(object):
-    
+
     @staticmethod
     def boolean(func):
         def wrapper(*args):
@@ -12,7 +12,7 @@ class Accepts(object):
                     pass
                 elif not isinstance(arg, bool):
                     raise TypeError('"' + str(arg) + '" is not a bool type!')
-            return func
+            func(args)
         return wrapper
     
     @staticmethod
@@ -23,7 +23,7 @@ class Accepts(object):
                     pass
                 elif not isinstance(arg, int):
                     raise TypeError('"' + str(arg) + '" is not an integer!')
-            return func
+            func(args)
         return wrapper
     
     @staticmethod
@@ -34,5 +34,5 @@ class Accepts(object):
                     pass
                 elif not isinstance(arg, str):
                     raise TypeError('"' + str(arg) + '" is not a string!')
-            return func
+            func(args)
         return wrapper
