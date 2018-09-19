@@ -45,3 +45,46 @@ class Accepts(object):
                 return func(cls,args)
             return func(args)
         return wrapper
+    
+    @classmethod
+    def dictionary(cls,func):
+        arg_count = func.__code__.co_argcount
+        def wrapper(*args):
+            for arg in args:
+                if re.search(r'<__main__',str(arg)) is not None:
+                    pass
+                elif not isinstance(arg, dict):
+                    raise TypeError('"' + str(arg) + '" is not a dictionary!')
+            if int(arg_count) > 1:
+                return func(cls,args)
+            return func(args)
+        return wrapper
+    
+    @classmethod
+    def list(cls,func):
+        arg_count = func.__code__.co_argcount
+        def wrapper(*args):
+            for arg in args:
+                if re.search(r'<__main__',str(arg)) is not None:
+                    pass
+                elif not isinstance(arg, list):
+                    raise TypeError('"' + str(arg) + '" is not a list!')
+            if int(arg_count) > 1:
+                return func(cls,args)
+            return func(args)
+        return wrapper
+    
+    @classmethod
+    def tuple(cls,func):
+        arg_count = func.__code__.co_argcount
+        def wrapper(*args):
+            for arg in args:
+                if re.search(r'<__main__',str(arg)) is not None:
+                    pass
+                elif not isinstance(arg, tuple):
+                    raise TypeError('"' + str(arg) + '" is not a tuple!')
+            if int(arg_count) > 1:
+                return func(cls,args)
+            return func(args)
+        return wrapper
+
