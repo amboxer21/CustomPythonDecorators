@@ -15,4 +15,4 @@ if __name__ == '__main__':
     Test().test_func('False') # This will fail!
 ```
 
-^^ Remove newlines in between method declarations if using the python shell/interpretter and are having problems because you decided to add more example/test methods!
+> ^^ Remove newlines in between method declarations if using the python shell/interpretter and are having problems because you decided to add more example/test methods!
