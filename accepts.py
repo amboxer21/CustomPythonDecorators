@@ -47,6 +47,22 @@ class Accepts(object):
         return wrapper
     
     @classmethod
+    def tuple(cls,func):
+        arg_count = func.__code__.co_argcount
+        def wrapper(*args):
+            for arg in args:
+                if re.search(r'<__main__',str(arg)) is not None:
+                    pass
+                elif not isinstance(args, tuple):
+                    raise TypeError('"' + str(arg) + '" is not a tuple!')
+                else:
+                    if int(arg_count) > 1:
+                        return func(cls,arg)
+                    return func(arg)
+        return wrapper
+    
+    # Needs fixing because return value is incorrect
+    @classmethod
     def dictionary(cls,func):
         arg_count = func.__code__.co_argcount
         def wrapper(*args):
@@ -59,7 +75,8 @@ class Accepts(object):
                 return func(cls,args)
             return func(args)
         return wrapper
-    
+
+    # Needs fixing because return value is incorrect
     @classmethod
     def list(cls,func):
         arg_count = func.__code__.co_argcount
@@ -73,18 +90,3 @@ class Accepts(object):
                 return func(cls,args)
             return func(args)
         return wrapper
-    
-    @classmethod
-    def tuple(cls,func):
-        arg_count = func.__code__.co_argcount
-        def wrapper(*args):
-            for arg in args:
-                if re.search(r'<__main__',str(arg)) is not None:
-                    pass
-                elif not isinstance(arg, tuple):
-                    raise TypeError('"' + str(arg) + '" is not a tuple!')
-            if int(arg_count) > 1:
-                return func(cls,args)
-            return func(args)
-        return wrapper
-
