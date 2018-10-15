@@ -1,5 +1,5 @@
 # CustomPythonDecorators(That dont really work as they should)
-Custom Python decorators I wrote. If you pass an argument other than what the decorator allows it will raise a TypeError exception.
+Custom Python decorators I wrote. If you pass an argument other than what the decorator allows it will raise a TypeError exception. These decorators need a lot of work!
 
 **Example:**
 
