@@ -1,4 +1,4 @@
-# CustomPythonDecorators
+# CustomPythonDecorators(That dont really work as they should)
 Custom Python decorators I wrote. If you pass an argument other than what the decorator allows it will raise a TypeError exception.
 
 **Example:**
