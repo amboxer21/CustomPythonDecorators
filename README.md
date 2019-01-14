@@ -8,9 +8,12 @@ class Test(object):
     @Accepts.boolean
     def test_func(self,value):
         if value:
-            print 'Value passed is True'
+            print('Value passed is True')
+        else:
+            print('Value passed is False')
    
 if __name__ == '__main__':
+    Test().test_func(True)   # This will work!
     Test().test_func(False)   # This will work!
     Test().test_func('False') # This will fail!
 ```
