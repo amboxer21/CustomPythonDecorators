@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-import re
-
 # Test cases have been added and this class should only be used with
 # instance methods of a class. Using them outside of this case will
 # result in undefined behavior and might not properly work as I have designed.
+
+import re
 
 class accepts(object):
 
