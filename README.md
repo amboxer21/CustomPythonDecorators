@@ -7,9 +7,7 @@ Custom Python decorators I wrote. If you pass an argument other than what the de
 class TestAcceptsClass(object):       
     @accepts.boolean
     def _boolean(_boolean_):
-        if _bolean_ or not _boolean_:
-            print('Value passed is '
-                + str(_boolean_))
+        print('boolean => ', _boolean_)
    
 if __name__ == '__main__':
     test = TestAcceptsClass()
