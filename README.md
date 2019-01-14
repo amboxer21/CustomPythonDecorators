@@ -5,7 +5,7 @@ Custom Python decorators I wrote. If you pass an argument other than what the de
 
 ```python
 class Test(object):       
-    @Accepts.boolean
+    @accepts.boolean
     def test_func(self,value):
         if value:
             print('Value passed is True')
