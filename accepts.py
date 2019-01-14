@@ -2,7 +2,11 @@
 
 import re
 
-class Accepts(object):
+# Test cases have been added and this class should only be used with
+# instance methods of a class. Using them outside of this case will
+# result in undefined behavior and might not properly work as I have designed.
+
+class accepts(object):
 
     @classmethod
     def boolean(cls,func):
@@ -88,3 +92,37 @@ class Accepts(object):
             return func(args)
         return wrapper
 
+class TestAcceptsClass(object):
+
+    @accepts.boolean
+    def _boolean(_boolean_):
+        print('boolean => ', _boolean_)
+
+    @accepts.integer
+    def _integer(_integer_):
+        print('integer => ', _integer_)
+
+    @accepts.string
+    def _string(_string_):
+        print('string => ', _string_)
+
+    @accepts.dictionary
+    def _dictionary(_dictionary_):
+        print('dictionary => ', _dictionary_)
+
+    @accepts.list
+    def _list(_list_):
+        print('list => ', _list_)
+
+    @accepts.tuple
+    def _tuple(_tuple_):
+        print('tuple => ', _tuple_)
+
+if __name__ == '__main__':
+    test = TestAcceptsClass()
+    test._integer(1)
+    test._boolean(True)
+    test._list(['1','2','3'])
+    test._tuple(('1','2','3'))
+    test._string('test string')
+    test._dictionary({'one': '1','two': '2','three': '3'})
