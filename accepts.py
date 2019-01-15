@@ -2,7 +2,9 @@
 
 # Test cases have been added and this class should only be used with
 # instance methods of a class. Using them outside of this case will
-# result in undefined behavior and might not properly work as I have designed.
+# result in an exception being raised. Using these custom decorators
+# in conjunction with the staticclass decorators will result in undefined
+# behavior because I have not tested this case and do not plan on it.
 
 import re
 
