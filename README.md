@@ -40,4 +40,4 @@ if __name__ == '__main__':
     test._dictionary({'one': '1','two': '2','three': '3'})
 ```
 
-> ^^ Remove newlines in between method declarations if using the python shell/interpretter and are having problems because you decided to add more example/test methods!
+> ^^ Remove newlines in between method declarations if using the python shell/interpretter and are having problems!
