@@ -30,7 +30,7 @@ class TestAcceptsClass(object):
         print('tuple => ', _tuple_)
  
 if __name__ == '__main__':
-    # These test cases will work
+    # Working test cases
     test = TestAcceptsClass()
     test._integer(1)
     test._boolean(True)
