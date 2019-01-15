@@ -10,84 +10,78 @@ class accepts(object):
 
     @classmethod
     def boolean(cls,func):
-        arg_count = func.__code__.co_argcount
+        if int(func.__code__.co_argcount) < 2:
+            raise SyntaxError('The '
+                + str(func.__name__)
+                + ' method must be an instance method of a class!')
         def wrapper(*args):
-            for arg in args:
-                if re.search(r'<__main__',str(arg)) is not None:
-                    pass
-                elif not isinstance(arg, bool):
+            for arg in args[1:]:
+                if not isinstance(arg, bool):
                     raise TypeError('"' + str(arg) + '" is not a bool type!')
-            if int(arg_count) > 1:
-                return func(cls,args)
-            return func(args)
+                return func(cls,args[1:])
         return wrapper
     
     @classmethod
     def integer(cls,func):
-        arg_count = func.__code__.co_argcount
+        if int(func.__code__.co_argcount) < 2:
+            raise SyntaxError('The '
+                + str(func.__name__)
+                + ' method must be an instance method of a class!')
         def wrapper(*args):
-            for arg in args:
-                if re.search(r'<__main__',str(arg)) is not None:
-                    pass
-                elif not isinstance(arg, int):
+            for arg in args[1:]:
+                if not isinstance(arg, int):
                     raise TypeError('"' + str(arg) + '" is not an integer!')
-            if int(arg_count) > 1:
-                return func(cls,args)
-            return func(args)
+                return func(cls,args[1:])
         return wrapper
     
     @classmethod
     def string(cls,func):
-        arg_count = func.__code__.co_argcount
+        if int(func.__code__.co_argcount) < 2:
+            raise SyntaxError('The '
+                + str(func.__name__)
+                + ' method must be an instance method of a class!')
         def wrapper(*args):
-            for arg in args:
-                if re.search(r'<__main__',str(arg)) is not None:
-                    pass
-                elif not isinstance(arg, str):
+            for arg in args[1:]:
+                if not isinstance(arg, str):
                     raise TypeError('"' + str(arg) + '" is not a string!')
-            if int(arg_count) > 1:
-                return func(cls,args)
-            return func(args)
+                return func(cls,args[1:])
         return wrapper
     
     @classmethod
     def dictionary(cls,func):
-        arg_count = func.__code__.co_argcount
+        if int(func.__code__.co_argcount) < 2:
+            raise SyntaxError('The '
+                + str(func.__name__)
+                + ' method must be an instance method of a class!')
         def wrapper(*args):
-            for arg in args:
-                if re.search(r'<__main__',str(arg)) is not None:
-                    pass
-                elif not isinstance(arg, dict):
+            for arg in args[1:]:
+                if not isinstance(arg, dict):
                     raise TypeError('"' + str(arg) + '" is not a dictionary!')
-            if int(arg_count) > 1:
-                return func(cls,args)
-            return func(args)
+                return func(cls,args[1:])
         return wrapper
     
     @classmethod
     def list(cls,func):
-        arg_count = func.__code__.co_argcount
+        if int(func.__code__.co_argcount) < 2:
+            raise SyntaxError('The '
+                + str(func.__name__)
+                + ' method must be an instance method of a class!')
         def wrapper(*args):
-            for arg in args:
-                if re.search(r'<__main__',str(arg)) is not None:
-                    pass
-                elif not isinstance(arg, list):
+            for arg in args[1:]:
+                if not isinstance(arg, list):
                     raise TypeError('"' + str(arg) + '" is not a list!')
-            if int(arg_count) > 1:
-                return func(cls,args)
-            return func(args)
+                return func(cls,args[1:])
         return wrapper
     
     @classmethod
     def tuple(cls,func):
-        arg_count = func.__code__.co_argcount
+        if int(func.__code__.co_argcount) < 2:
+            raise SyntaxError('The '
+                + str(func.__name__)
+                + ' method must be an instance method of a class!')
         def wrapper(*args):
-            for arg in args:
-                if re.search(r'<__main__',str(arg)) is not None:
-                    pass
-                elif not isinstance(arg, tuple):
+            for arg in args[1:]:
+                if not isinstance(arg, tuple):
                     raise TypeError('"' + str(arg) + '" is not a tuple!')
-            if int(arg_count) > 1:
-                return func(cls,args)
-            return func(args)
+                return func(cls,args[1:])
         return wrapper
