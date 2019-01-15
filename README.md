@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
     test._dictionary(
         {'one': '1','two': '2','three': '3'},
-        {'one': '1','two': '2','three': '3'}
+        {'four': '4','five': '5','six': '6'}
     )
     test._dictionary({'one': '1','two': '2','three': '3'})
 ```
