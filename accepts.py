@@ -6,8 +6,6 @@
 # in conjunction with the staticclass decorators will result in undefined
 # behavior because I have not tested this case and do not plan on it.
 
-import re
-
 class accepts(object):
 
     @classmethod
