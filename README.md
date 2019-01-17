@@ -8,27 +8,27 @@ class TestAcceptsClass(object):
 
     @accepts.boolean
     def _boolean(self,_boolean_):
-        print('boolean => ', _boolean_)
+        print('boolean => '+str(_boolean_))
 
     @accepts.integer
     def _integer(self,_integer_):
-        print('integer => ', _integer_)
+        print('integer => '+str(_integer_))
 
     @accepts.string
     def _string(self,_string_):
-        print('string => ', _string_)
+        print('string => '+str(_string_))
 
     @accepts.dictionary
     def _dictionary(self,_dictionary_):
-        print('dictionary => ', _dictionary_)
+        print('dictionary => '+str(_dictionary_))
 
     @accepts.list
     def _list(self,_list_):
-        print('list => ', _list_)
+        print('list => '+str(_list_))
 
     @accepts.tuple
     def _tuple(self,_tuple_):
-        print('tuple => ', _tuple_)
+        print('tuple => '+str(_tuple_))
 
 if __name__ == '__main__':
 
