@@ -85,6 +85,7 @@ if __name__ == '__main__':
 
 # The following examples will fail and will raise a SyntaxError
 # and complain about the method not being an instance of a class.
+@accepts.integer
 def _integer(_integer_):
     print('integer: '+str(_integer_))
     
