@@ -1,39 +1,55 @@
 # CustomPythonDecorators
-Custom Python decorators I wrote to restrict method arguments to a specific type. If you pass an argument other than what the decorator allows it will raise a TypeError exception.
+The are custom Python decorators I wrote to restrict method arguments to a specific type. If you pass an argument other than what the decorator allows, it will raise a TypeError exception.
 
 **Example:**
 
 ```python
 class TestAcceptsClass(object):
 
+    # This instance method will raise an exception
+    # if an argument other than boolean is passed.
     @accepts.boolean
     def _boolean(self,_boolean_):
         print('boolean => '+str(_boolean_))
 
+    # This instance method will raise an exception
+    # if an argument other than integer is passed.
     @accepts.integer
     def _integer(self,_integer_):
         print('integer => '+str(_integer_))
 
+    # This instance method will raise an exception
+    # if an argument other than string is passed.
     @accepts.string
     def _string(self,_string_):
         print('string => '+str(_string_))
 
+    # This instance method will raise an exception
+    # if an argument other than dict is passed.
     @accepts.dictionary
     def _dictionary(self,_dictionary_):
         print('dictionary => '+str(_dictionary_))
 
+    # This instance method will raise an exception
+    # if an argument other than list is passed.
     @accepts.list
     def _list(self,_list_):
         print('list => '+str(_list_))
 
+    # This instance method will raise an exception
+    # if an argument other than tuple is passed.
     @accepts.tuple
     def _tuple(self,_tuple_):
         print('tuple => '+str(_tuple_))
 
 if __name__ == '__main__':
 
+    # Our test class
     test = TestAcceptsClass()
 
+    # The following examples are ways that the custom
+    # decorators can be used. 
+    
     test._integer(1)
     test._integer(1,2)
 
@@ -54,6 +70,26 @@ if __name__ == '__main__':
         {'four': '4','five': '5','six': '6'}
     )
     test._dictionary({'one': '1','two': '2','three': '3'})
+    
+    # The following test cases will fail and will raise a type exception!
+    test._integer('1')
+    test._integer('1','2')
+    test._boolean(1)
+    test._boolean('True','False',1)
+    test._list(('1','2','3'))
+    test._list(('1','2','3'),('4','5','6'))
+    test._tuple(['1','2','3'],)
+    test._tuple(['1','2','3'],['4','5','6'])
+    test._string(True)
+    test._string(True,False)
+
+# The following examples will fail and will raise a SyntaxError
+# and complain about the method not being an instance of a class.
+def _integer(_integer_):
+    print('integer: '+str(_integer_))
+    
+_integer(1)
+    
 ```
 
 > ^^ Remove newlines in between method declarations if using the python shell/interpretter and are having problems!
