@@ -15,7 +15,7 @@ class accepts(object):
         def wrapper(*arguments):
             if not [arg for arg in arguments if re.match('<__main__.*object at.*>',str(arg))]:
                 raise SyntaxError('Method must be an instance method of a class!')
-            return func(arguments[1:])
+            [func(arg) for arg in arguments[1:]]
         return wrapper
 
     @classmethod
