@@ -24,4 +24,4 @@ classifiers=[
     'License :: OSI Approved :: GNU General Public License (GPL)',
 ],
 zip_safe=True,
-setup_requires=['pytailf', 'python-crontab'],)
+setup_requires=['re'],)
