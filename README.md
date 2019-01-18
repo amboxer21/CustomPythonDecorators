@@ -1,7 +1,7 @@
 # CustomPythonDecorators
 The are custom Python decorators I wrote to restrict method arguments to a specific type. If you pass an argument other than what the decorator allows, it will raise a TypeError exception.
 
-**Example:**
+**Examples:**
 
 ```python
 class TestAcceptsClass(object):
