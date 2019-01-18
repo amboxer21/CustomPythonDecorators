@@ -1,5 +1,5 @@
 # CustomPythonDecorators
-The are custom Python decorators I wrote to restrict method arguments to a specific type. If you pass an argument other than what the decorator allows, it will raise a TypeError exception.
+These are custom Python decorators I wrote to restrict method arguments to a specific type. If you pass an argument other than what the decorator allows, it will raise a TypeError exception. These decorators also ensure that you are calling the decorator on an instance method of a class.
 
 **Examples:**
 
