@@ -5,7 +5,7 @@
 # result in an exception being raised. Using these custom decorators
 # in conjunction with the staticclass decorators will result in undefined
 # behavior because I have not tested this case and do not plan on it.
-# See the REAME if you need an explaination on how to use them.
+# See the README if you need an explaination on how to use them.
 
 import re
 
