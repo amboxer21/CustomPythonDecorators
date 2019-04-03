@@ -111,7 +111,7 @@ class TestStringClass(object):
 if __name__ == '__main__':
 
     # This will work
-    test = TestString()
+    test = TestStringClass()
     encrypted_text = test.encrypt('This is an encrypted string')
     print test.decrypt(encrypted_text)
 
