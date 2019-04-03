@@ -17,12 +17,7 @@ class string(object):
             if not re.match('<__main__.*object at.*>',str(arguments[0])):
                 raise SyntaxError('Method must be an instance method of a class!')
             for string in arguments[1:]:
-                key = AES.new(
-                    cls.__KEY__,
-                    AES.MODE_CFB,
-                    cls.__IV__
-                )
-                cls.encrypted_text = key.encrypt(string)
+                cls.encrypted_text = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).encrypt(string)
             return func(arguments[0].__class__,cls.encrypted_text)
         return wrapper
 
@@ -32,11 +27,6 @@ class string(object):
             if not re.match('<__main__.*object at.*>',str(arguments[0])):
                 raise SyntaxError('Method must be an instance method of a class!')
             for string in arguments[1:]:
-                key = AES.new(
-                    cls.__KEY__,
-                    AES.MODE_CFB,
-                    cls.__IV__
-                )
-                cls.encrypted_text = key.decrypt(string)
+                cls.encrypted_text = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).decrypt(string)
             return func(arguments[0].__class__,cls.encrypted_text)
         return wrapper
