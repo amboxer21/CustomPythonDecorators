@@ -3,6 +3,8 @@ These are custom Python decorators I wrote to restrict method arguments to a spe
 
 **Examples:**
 
+>**accepts decorators**
+
 ```python
 class TestAcceptsClass(object):
 
@@ -91,6 +93,34 @@ def _integer(_integer_):
     
 _integer(1)
     
+```
+
+>**encryption decorators**
+
+```javascript
+class TestStringClass(object):
+
+    @string.encrypt
+    def encrypt(self,string):
+        return string 
+
+    @string.decrypt
+    def decrypt(self,string):
+        return string
+
+if __name__ == '__main__':
+
+    # This will work
+    test = TestString()
+    encrypted_text = test.encrypt('This is an encrypted string')
+    print test.decrypt(encrypted_text)
+
+# This will not work
+@string.encrypt
+def test_string_method(string):
+    string
+    
+test_string_method('This is a test')    
 ```
 
 > ^^ Remove newlines in between method declarations if using the python shell/interpretter and are having problems!
