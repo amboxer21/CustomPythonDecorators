@@ -7,7 +7,7 @@ from Crypto.Cipher import AES
 
 class string(object):
 
-    encrypted_text = '\0'
+    __ciphertext__ = '\0'
     __KEY__  = Random.new().read(32)
     __IV__   = Random.new().read(16)
 
@@ -17,8 +17,8 @@ class string(object):
             if not re.match('<__main__.*object at.*>',str(arguments[0])):
                 raise SyntaxError('Method must be an instance method of a class!')
             for string in arguments[1:]:
-                cls.encrypted_text = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).encrypt(string)
-            return func(arguments[0].__class__,cls.encrypted_text)
+                cls.__ciphertext__ = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).encrypt(string)
+            return func(arguments[0].__class__,cls.__ciphertext__)
         return wrapper
 
     @classmethod
@@ -27,6 +27,6 @@ class string(object):
             if not re.match('<__main__.*object at.*>',str(arguments[0])):
                 raise SyntaxError('Method must be an instance method of a class!')
             for string in arguments[1:]:
-                cls.encrypted_text = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).decrypt(string)
-            return func(arguments[0].__class__,cls.encrypted_text)
+                cls.__ciphertext__ = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).decrypt(string)
+            return func(arguments[0].__class__,cls.__ciphertext__)
         return wrapper
