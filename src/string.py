@@ -5,20 +5,35 @@ import re
 from Crypto import Random
 from Crypto.Cipher import AES
 
+class MetaString(type):
+
+    def __new__(meta,name,bases,dct):
+        if not hasattr(meta,'random'):
+            meta.random = Random.new().read(16)
+        return super(MetaString, meta).__new__(meta, name, bases, dct)
+
+    def __init__(cls,name,bases,dct):
+        if not hasattr(cls,'IV'):
+            cls.IV = MetaString.random
+        if not hasattr(cls,'KEY'):
+            cls.KEY = MetaString.random
+        if not hasattr(cls,'ciphertext'):
+            cls.ciphertext = '\0'
+        super(MetaString,cls).__init__(name,bases,dct)
+
 class string(object):
 
-    __ciphertext__ = '\0'
-    __KEY__  = Random.new().read(32)
-    __IV__   = Random.new().read(16)
+    __metaclass__ = MetaString
 
     @classmethod
     def encrypt(cls,func):
         def wrapper(*arguments):
             if not re.match('<__main__.*object at.*>',str(arguments[0])):
                 raise SyntaxError('Method must be an instance method of a class!')
-            for string in arguments[1:]:
-                cls.__ciphertext__ = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).encrypt(string)
-            return func(arguments[0].__class__,cls.__ciphertext__)
+            for arg in arguments[1:]:
+                string.ciphertext = AES.new(string.KEY, AES.MODE_CFB, string.IV).encrypt(arg)
+            return func(arguments[0].__class__,string.ciphertext)
+            print string.KEY
         return wrapper
 
     @classmethod
@@ -26,7 +41,7 @@ class string(object):
         def wrapper(*arguments):
             if not re.match('<__main__.*object at.*>',str(arguments[0])):
                 raise SyntaxError('Method must be an instance method of a class!')
-            for string in arguments[1:]:
-                cls.__ciphertext__ = AES.new( cls.__KEY__, AES.MODE_CFB, cls.__IV__).decrypt(string)
-            return func(arguments[0].__class__,cls.__ciphertext__)
+            for arg in arguments[1:]:
+                string.ciphertext = AES.new(string.KEY, AES.MODE_CFB, string.IV).decrypt(arg)
+            return func(arguments[0].__class__,string.ciphertext)
         return wrapper
