@@ -19,7 +19,7 @@ class MetaString(type):
             cls.KEY = MetaString.random.read(32)
         if not hasattr(cls,'ciphertext'):
             cls.ciphertext = '\0'
-        super(MetaString,cls).__init__(name,bases,dct)
+        return super(MetaString,cls).__init__(name,bases,dct)
 
 class string(object):
 
