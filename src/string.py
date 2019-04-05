@@ -9,14 +9,14 @@ class MetaString(type):
 
     def __new__(meta,name,bases,dct):
         if not hasattr(meta,'random'):
-            meta.random = Random.new().read(16)
+            meta.random = Random.new()
         return super(MetaString, meta).__new__(meta, name, bases, dct)
 
     def __init__(cls,name,bases,dct):
         if not hasattr(cls,'IV'):
-            cls.IV = MetaString.random
+            cls.IV = MetaString.random.read(16)
         if not hasattr(cls,'KEY'):
-            cls.KEY = MetaString.random
+            cls.KEY = MetaString.random.read(32)
         if not hasattr(cls,'ciphertext'):
             cls.ciphertext = '\0'
         super(MetaString,cls).__init__(name,bases,dct)
