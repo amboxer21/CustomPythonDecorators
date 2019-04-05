@@ -26,22 +26,31 @@ class string(object):
     __metaclass__ = MetaString
 
     @classmethod
-    def encrypt(cls,func):
+    def instancemethod(cls,func):
         def wrapper(*arguments):
             if not re.match('<__main__.*object at.*>',str(arguments[0])):
                 raise SyntaxError('Method must be an instance method of a class!')
-            for arg in arguments[1:]:
-                string.ciphertext = AES.new(string.KEY, AES.MODE_CFB, string.IV).encrypt(arg)
+            return func(arguments[0:])
+        return wrapper
+
+    @classmethod
+    def encrypt(cls,func):
+        @string.instancemethod
+        def wrapper(*arguments):
+            arguments = arguments[0]
+            if not isinstance(arguments[1], str):
+                raise TypeError('Argument is not of type Str!')
+            string.ciphertext = AES.new(string.KEY, AES.MODE_CFB, string.IV).encrypt(arguments[1])
             return func(arguments[0].__class__,string.ciphertext)
-            print string.KEY
         return wrapper
 
     @classmethod
     def decrypt(cls,func):
+        @string.instancemethod
         def wrapper(*arguments):
-            if not re.match('<__main__.*object at.*>',str(arguments[0])):
-                raise SyntaxError('Method must be an instance method of a class!')
-            for arg in arguments[1:]:
-                string.ciphertext = AES.new(string.KEY, AES.MODE_CFB, string.IV).decrypt(arg)
+            arguments = arguments[0]
+            if not isinstance(arguments[1], str):
+                raise TypeError('Argument is not of type Str!')
+            string.ciphertext = AES.new(string.KEY, AES.MODE_CFB, string.IV).decrypt(arguments[1])
             return func(arguments[0].__class__,string.ciphertext)
         return wrapper
