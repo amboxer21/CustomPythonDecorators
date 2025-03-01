@@ -11,6 +11,8 @@ import re
 
 class accepts(object):
 
+    # This decorator ensures that the methods you create are instance
+    # methods of a class and not a method created outside of a class.
     @classmethod
     def instancemethod(cls,func):
         def wrapper(*arguments):
