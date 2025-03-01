@@ -4,6 +4,7 @@ import pandas as pd
 
 class retry(object):
 
+    # Only works with DataFrames atm
     @classmethod
     def empty(cls, func):
         def wrapper(*arguments,**kwargs):
