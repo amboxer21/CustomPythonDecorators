@@ -6,7 +6,7 @@ class retry(object):
 
     # Only works with DataFrames atm
     @classmethod
-    def empty(cls, func):
+    def empty_dataframe(cls, func):
         def wrapper(*arguments,**kwargs):
             f = func(*arguments, **kwargs)
             while f.empty:
