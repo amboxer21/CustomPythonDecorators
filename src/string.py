@@ -45,3 +45,27 @@ class string(object):
                 string.ciphertext = AES.new(string.KEY, AES.MODE_CFB, string.IV).decrypt(arg)
             return func(arguments[0].__class__,string.ciphertext)
         return wrapper
+
+class TestStringClass(object):
+
+    @string.encrypt
+    def encrypt(self,string):
+        return string
+
+    @string.decrypt
+    def decrypt(self,string):
+        return string
+
+if __name__ == '__main__':
+
+    # This will work
+    test = TestStringClass()
+    encrypted_text = test.encrypt('This is an encrypted string')
+    print test.decrypt(encrypted_text)
+
+# This will not work
+@string.encrypt
+def test_string_method(string):
+    string
+
+test_string_method('This is a test')
