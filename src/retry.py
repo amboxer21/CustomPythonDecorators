@@ -3,6 +3,7 @@ import pandas as pd
 
 
 class retry(object):
+
     @classmethod
     def empty(cls, func):
         def wrapper(*arguments,**kwargs):
